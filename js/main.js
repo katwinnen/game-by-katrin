@@ -1,7 +1,7 @@
 class Snake {
     constructor() {
-        this.width = 10;
-        this.height = 10;
+        this.width = 9;
+        this.height = 13;
         this.positionX = 35 - this.width / 2;
         this.positionY = 30 - this.height / 2;
         this.snakeElm = document.getElementById("snake");
@@ -106,9 +106,9 @@ setInterval(() => {
         snake.positionY + snake.height > food.positionY
     )) {
         console.log("Snake ate the food!");
-        this.collisionScore += 100; 
+        this.collisionScore += 100; // Increase collision score by 100
         console.log("Collision score:", this.collisionScore);
-
+            
         // Remove the existing food
         const parentElm = document.getElementById("board");
         parentElm.removeChild(food.foodElm);
@@ -120,6 +120,7 @@ setInterval(() => {
         food = new Food();
     }
 }, 30);
+
 
 document.addEventListener("keydown", (e) => {
     switch (e.code) {
