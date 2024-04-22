@@ -1,3 +1,23 @@
 body {
-    background-image: url("images/snake-game-background.jpeg");
+background-color: orange;
+margin: 0;
+padding: 0;
+}
+
+#board {
+    background-image: url("../images/snake-game-background.jpeg");
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+#snake {
+   background-color: rgb(10, 74, 10);
+    position: absolute;
+}
+
+.food {
+    background-color: rgb(90, 19, 156);
+    position: absolute;
 }
