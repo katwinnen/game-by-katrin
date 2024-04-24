@@ -1,7 +1,7 @@
 class Snake {
     constructor() {
-        this.width = 10;
-        this.height = 10;
+        this.width = 7;
+        this.height = 13;
         this.positionX = 35 - this.width / 2;
         this.positionY = 30 - this.height / 2;
         this.snakeElm = document.getElementById("snake");
@@ -16,7 +16,11 @@ class Snake {
         this.gameOver = false;
         this.originalWidth = 10; // Store the original width
         this.scoreToIncreaseLength = 500; // Score threshold to increase length
-        this.lengthMultiplier = 1.5; // Multiplier for length increase
+        this.lengthMultiplier = 1; // Multiplier for length increase
+        this.scoreDisplay = document.getElementById("currentScore");
+        this.originalSpeed = 3; // Store the original speed
+        this.scoreToIncreaseSpeed = 500; // Score threshold to increase speed
+        this.speedIncrement = 0.5; // Speed increment
 
     }
 
@@ -85,13 +89,26 @@ class Snake {
         // Update the position of the snake element
         this.snakeElm.style.left = this.positionX + "vw";
     }
+
+    updateScoreDisplay() {
+        this.scoreDisplay.textContent = this.collisionScore;
+    }
+
+    updateSpeed() {
+        const increaseFactor = Math.floor(this.collisionScore / this.scoreToIncreaseSpeed);
+        // Calculate the new speed based on original speed and increment
+        const newSpeed = this.originalSpeed + increaseFactor * this.speedIncrement;
+        // Set the new speed
+        this.speed = newSpeed;
+    }
+
 }
 
 
 
 class Food {
     constructor(){
-        this.width = 10;
+        this.width = 6;
         this.height = 10;
         this.positionX = Math.floor(Math.random() * (100 - this.width + 1)); // random number between 0 and (100-width)
         this.positionY = Math.floor(Math.random() * (90 - this.height + 1)); // random number between 0 and (90-height)
@@ -138,6 +155,7 @@ setInterval(() => {
         snake.collisionScore += 100; // Increase collision score by 100
         console.log("Collision score:", snake.collisionScore);
         snake.updateLength();     
+        snake.updateSpeed();
         // Remove the existing food
         const parentElm = document.getElementById("board");
         parentElm.removeChild(food.foodElm);
@@ -147,6 +165,7 @@ setInterval(() => {
         
         // Generate a new food
         food = new Food();
+        snake.updateScoreDisplay();
     }
 }, 30);
 

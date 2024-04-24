@@ -13,12 +13,12 @@ padding: 0;
 }
 
 #snake {
-    background-color: green;
+    background: url("../images/snake.png"); 
     position: absolute;
 }
 
 .food {
-    background-color: red;
+    background: url("../images/apple.png"); 
     position: absolute;
 }
 
@@ -51,4 +51,22 @@ padding: 0;
     font-size: 20px;
     padding: 10px 20px;
     cursor: pointer;
+}
+
+.score-box {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.score-box p {
+    margin: 0;
+}
+
+.score-box span {
+    font-weight: bold;
 }
