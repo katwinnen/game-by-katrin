@@ -9,8 +9,13 @@
 
 </head>
 <body>
-    <div id="board"><div id="snake"></div><div id="food"></div></div>
-
+    <div id="board"><div id="snake"></div><div id="food"></div></div><div id="gameOverScreen" style="display: none;">
+        <div class="game-over-container">
+            <h1>Game Over!</h1>
+            <p id="finalScore">Your Score: 0</p>
+            <button onclick="restartGame()">Play again</button>
+        </div>
+    </div>
     <script src="./js/main.js"></script>
 </body>
 </html>

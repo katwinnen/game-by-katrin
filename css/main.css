@@ -13,11 +13,42 @@ padding: 0;
 }
 
 #snake {
-    background-image: url("../images/snake.png");
+    background-color: green;
     position: absolute;
 }
 
 .food {
-    background-image: url("../images/apple.jpg");
+    background-color: red;
     position: absolute;
+}
+
+#gameOverScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-over-container {
+    text-align: center;
+    color: white;
+}
+
+.game-over-container h1 {
+    font-size: 48px;
+}
+
+.game-over-container p {
+    font-size: 24px;
+}
+
+.game-over-container button {
+    font-size: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
 }
