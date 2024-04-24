@@ -12,7 +12,7 @@ class Snake {
         this.direction = "right"; 
         this.speed = 3; 
         this.collisionScore = 0;
-        this.collisionSound = new Audio('sound/gulp.mp3');
+        this.collisionSound = new Audio("./sound/gulp.mp3");
         this.gameOver = false;
         this.originalWidth = 10; // Store the original width
         this.scoreToIncreaseLength = 500; // Score threshold to increase length
