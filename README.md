@@ -1,5 +1,11 @@
 # 🍎🐍 More Apples for the Snake 
 
+## 📷 Screenshots
+
+- [Start Screen](./images/screen-start.png)
+- [Game Over Screen](./images/screen-game-over.png)
+
+
 ## 🎮 How to play
 
 The goal of the game "More Apples for the Snake" is to collect as many apples as possible. The user takes the role of the snake and is able to navigate up and down and left and ride with the arrow keys. The user is not allowed to touch the borders of the game. If the user touches the borders of the game is over. For every apple the user collects 100 scores will be calculated. After each 500 scores the speed of the snake is increased to make the game more difficult to navigate. The user is able to see the current scores in the right corner of the game. After the Game Over the user sees the final score of the game and is able to start again. 

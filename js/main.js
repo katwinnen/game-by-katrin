@@ -13,6 +13,7 @@ class Snake {
         this.speed = 3; 
         this.collisionScore = 0;
         this.collisionSound = new Audio("./sound/gulp.mp3");
+        this.eatSound = new Audio("./sound/eat.mp3");
         this.gameOver = false;
         this.originalWidth = 10; // Store the original width
         this.scoreToIncreaseLength = 500; // Score threshold to increase length
@@ -59,6 +60,7 @@ class Snake {
             this.positionY < 0 || this.positionY > 100 - this.height) {
             this.gameOver = true;
             this.stopMoving();
+            console.log("Collision detected! Playing collision sound...");
             this.collisionSound.play();
             document.getElementById('finalScore').innerText = 'Your Score: ' + this.collisionScore;
             document.getElementById('gameOverScreen').style.display = 'flex';
@@ -78,7 +80,10 @@ class Snake {
         clearInterval(this.intervalId);
     }
 
-    
+    playEatSound() {
+        this.eatSound.play();
+    }
+
 
     updateLength() {
         const increaseFactor = Math.floor(this.collisionScore / this.scoreToIncreaseLength);
@@ -159,6 +164,7 @@ setInterval(() => {
         console.log("Collision score:", snake.collisionScore);
         snake.updateLength();     
         snake.updateSpeed();
+        snake.playEatSound(); //
         // Remove the existing food
         const parentElm = document.getElementById("board");
         parentElm.removeChild(food.foodElm);
