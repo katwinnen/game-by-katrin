@@ -1,7 +1,7 @@
 class Snake {
     constructor() {
-        this.width = 6;
-        this.height = 13;
+        this.width = 9.5;
+        this.height = 13.5;
         this.positionX = 35 - this.width / 2;
         this.positionY = 30 - this.height / 2;
         this.snakeElm = document.getElementById("snake");
@@ -10,19 +10,20 @@ class Snake {
         this.snakeElm.style.left = this.positionX + "vw";
         this.snakeElm.style.bottom = this.positionY + "vh";
         this.direction = "right"; 
-        this.speed = 3; 
+        this.speed = 2; 
         this.collisionScore = 0;
         this.collisionSound = new Audio("./sound/gulp.mp3");
         this.eatSound = new Audio("./sound/eat.mp3");
         this.gameOver = false;
         this.originalWidth = 10; // Store the original width
-        this.scoreToIncreaseLength = 500; // Score threshold to increase length
-        this.lengthMultiplier = 1; // Multiplier for length increase
+        //this.scoreToIncreaseLength = 500; // Score threshold to increase length
+        //this.lengthMultiplier = 1; // Multiplier for length increase
         this.scoreDisplay = document.getElementById("currentScore");
-        this.originalSpeed = 3; // Store the original speed
+        this.originalSpeed = 2; // Store the original speed
         this.scoreToIncreaseSpeed = 500; // Score threshold to increase speed
         this.speedIncrement = 0.5; // Speed increment
-
+        this.fixedRatio = 16 / 9;
+        this.adjustedSpeed = this.originalSpeed * this.fixedRatio;
     }
 
     move() {
@@ -83,9 +84,9 @@ class Snake {
     playEatSound() {
         this.eatSound.play();
     }
+    
 
-
-    updateLength() {
+   /* updateLength() {
         const increaseFactor = Math.floor(this.collisionScore / this.scoreToIncreaseLength);
         // Calculate the new width based on original width and multiplier
         const newWidth = this.originalWidth * Math.pow(this.lengthMultiplier, increaseFactor);
@@ -96,7 +97,7 @@ class Snake {
         this.width = newWidth;
         // Update the position of the snake element
         this.snakeElm.style.left = this.positionX + "vw";
-    }
+    }*/
 
     updateScoreDisplay() {
         this.scoreDisplay.textContent = this.collisionScore;
@@ -104,20 +105,17 @@ class Snake {
 
     updateSpeed() {
         const increaseFactor = Math.floor(this.collisionScore / this.scoreToIncreaseSpeed);
-        // Calculate the new speed based on original speed and increment
         const newSpeed = this.originalSpeed + increaseFactor * this.speedIncrement;
-        // Set the new speed
         this.speed = newSpeed;
+        console.log("New speed:", this.speed);
     }
 
 }
 
-
-
 class Food {
     constructor(){
-        this.width = 5;
-        this.height = 9;
+        this.width = 6;
+        this.height = 10;
         this.positionX = Math.floor(Math.random() * (100 - this.width + 1)); // random number between 0 and (100-width)
         this.positionY = Math.floor(Math.random() * (90 - this.height + 1)); // random number between 0 and (90-height)
         this.foodElm = null;
@@ -162,9 +160,9 @@ setInterval(() => {
         console.log("Snake ate the food!");
         snake.collisionScore += 100; // Increase collision score by 100
         console.log("Collision score:", snake.collisionScore);
-        snake.updateLength();     
+        //snake.updateLength();     
         snake.updateSpeed();
-        snake.playEatSound(); //
+        snake.playEatSound(); // Play eat sound
         // Remove the existing food
         const parentElm = document.getElementById("board");
         parentElm.removeChild(food.foodElm);
@@ -207,13 +205,13 @@ function restartGame() {
     snake.gameOver = false;
     snake.startMoving(); // Restart snake movement
 
-    // Remove existing food and create a new one
+    // Remove food and create new food
     if (food) {
         const parentElm = document.getElementById('board');
         parentElm.removeChild(food.foodElm);
         food = new Food();
     }
 
-    // Hide the game over screen
+    // Hide game over
     document.getElementById('gameOverScreen').style.display = 'none';
 }
