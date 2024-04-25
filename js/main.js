@@ -1,6 +1,6 @@
 class Snake {
     constructor() {
-        this.width = 7;
+        this.width = 6;
         this.height = 13;
         this.positionX = 35 - this.width / 2;
         this.positionY = 30 - this.height / 2;
@@ -59,6 +59,7 @@ class Snake {
             this.positionY < 0 || this.positionY > 100 - this.height) {
             this.gameOver = true;
             this.stopMoving();
+            this.collisionSound.play();
             document.getElementById('finalScore').innerText = 'Your Score: ' + this.collisionScore;
             document.getElementById('gameOverScreen').style.display = 'flex';
 
@@ -76,6 +77,8 @@ class Snake {
     stopMoving() {
         clearInterval(this.intervalId);
     }
+
+    
 
     updateLength() {
         const increaseFactor = Math.floor(this.collisionScore / this.scoreToIncreaseLength);
@@ -108,8 +111,8 @@ class Snake {
 
 class Food {
     constructor(){
-        this.width = 6;
-        this.height = 10;
+        this.width = 5;
+        this.height = 9;
         this.positionX = Math.floor(Math.random() * (100 - this.width + 1)); // random number between 0 and (100-width)
         this.positionY = Math.floor(Math.random() * (90 - this.height + 1)); // random number between 0 and (90-height)
         this.foodElm = null;
