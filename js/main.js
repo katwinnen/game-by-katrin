@@ -14,6 +14,7 @@ class Snake {
         this.collisionScore = 0;
         this.collisionSound = new Audio("./sound/gulp.mp3");
         this.eatSound = new Audio("./sound/eat.mp3");
+        this.directionSound = new Audio("./sound/direction.mp3");
         this.gameOver = false;
         this.originalWidth = 10; // Store the original width
         //this.scoreToIncreaseLength = 500; // Score threshold to increase length
@@ -32,24 +33,28 @@ class Snake {
                 if (this.positionX > 0) {
                     this.positionX -= this.speed;
                     this.snakeElm.style.left = this.positionX + "vw";
+                    this.playDirectionSound();
                 }
                 break;
             case "right":
                 if (this.positionX < 100 - this.width) {
                     this.positionX += this.speed;
                     this.snakeElm.style.left = this.positionX + "vw";
+                    this.playDirectionSound();
                 }
                 break;
             case "up":
                 if (this.positionY < 100 - this.height) {
                     this.positionY += this.speed;
                     this.snakeElm.style.bottom = this.positionY + "vh";
+                    this.playDirectionSound();
                 }
                 break;
             case "down":
                 if (this.positionY > 0) {
                     this.positionY -= this.speed;
                     this.snakeElm.style.bottom = this.positionY + "vh";
+                    this.playDirectionSound();
                 }
                 break;
         }
@@ -84,7 +89,11 @@ class Snake {
     playEatSound() {
         this.eatSound.play();
     }
-    
+
+    playDirectionSound() {
+        // Play the direction sound
+        this.directionSound.play();
+    }
 
    /* updateLength() {
         const increaseFactor = Math.floor(this.collisionScore / this.scoreToIncreaseLength);
